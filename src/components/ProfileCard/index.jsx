@@ -6,6 +6,7 @@ import ProfileStats from './ProfileStats';
 import UserDetails from './UserDetails';
 import useSearch from '../../hooks/useSearch';
 import { useUserProfile } from '../../api/queries';
+import UserNotFound from './UserNotFound';
 
 const GridContainer = styled.div`
   width: 100%;
@@ -46,11 +47,14 @@ function ProfileCard() {
 
   const { isLoading, data } = useUserProfile(searchTerm);
 
-  // ! Fix loading state
   if (isLoading) return <PulseLoader />;
 
   if (data?.message === 'Not Found')
-    return <GridContainer>Not found</GridContainer>;
+    return (
+      <GridContainer>
+        <UserNotFound />
+      </GridContainer>
+    );
 
   return (
     <GridContainer>

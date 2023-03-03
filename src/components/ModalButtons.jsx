@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
+import Modal from './UI/Modal';
 
-import Modal from './Modal/Modal';
 import Followers from './Followers/Followers';
 import Repos from './ReposGrid';
 
@@ -36,15 +36,11 @@ function ButtonsModal({ user }) {
   const [isOpen, setIsOpen] = useState(false);
   const [modalId, setModalId] = useState('repos');
 
-  // Reference to the modal's child containig the
-  // list with all the followers/repos
-  const modalRef = useRef();
-
   const handleClick = e => {
     setIsOpen(prevState => !prevState);
     setModalId(e.target.id);
-    // Scroll followers/repos list to top every time the modal opens
-    modalRef.current.scrollTo(0, 0);
+
+    console.log(e.target.id);
   };
 
   return (
@@ -60,17 +56,8 @@ function ButtonsModal({ user }) {
           Following
         </Button>
       </FlexContainer>
-      <Modal
-        modalRef={modalRef}
-        title={modalId}
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-      >
-        {modalId === 'repos' ? (
-          <Repos user={user} />
-        ) : (
-          <Followers modalRef={modalRef} user={user} resource={modalId} />
-        )}
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+        <h1>{modalId}</h1>
       </Modal>
     </>
   );

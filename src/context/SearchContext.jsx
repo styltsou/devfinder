@@ -2,7 +2,6 @@ import { createContext, useState } from 'react';
 
 const SearchContext = createContext({
   searchTerm: 'octocat',
-  results: {},
 });
 
 const SearchContextProvider = ({ children }) => {

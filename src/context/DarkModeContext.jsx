@@ -1,19 +1,14 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 const DarkModeContext = createContext({
   isDarkMode: false,
 });
 
 const DarkModeContextProvider = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useLocalStorage('isDarkMode', false);
 
   const toggleDarkMode = () => setIsDarkMode(prev => !prev);
-
-  // Get theme preference from local storage
-  useEffect(() => {}, []);
-
-  // Update theme preference in local storage
-  useEffect(() => {}, [isDarkMode]);
 
   return (
     <DarkModeContext.Provider

@@ -17,18 +17,22 @@ const Dot = styled.div`
   height: 1rem;
   border-radius: 50%;
   margin: 0.7rem 0 0.7rem 0;
-  background-color: #000;
+  background-color: var(--color-text);
   animation: ${pulseAnimation} 0.5s linear infinite;
   animation-fill-mode: none;
+
   &:not(:last-child) {
     margin-right: 0.6rem;
   }
+
   &:nth-child(1) {
     animation-delay: 0s;
   }
+
   &:nth-child(2) {
     animation-delay: 0.1s;
   }
+
   &:nth-child(3) {
     animation-delay: 0.1s;
   }

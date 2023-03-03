@@ -1,34 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import styled, { ThemeProvider } from 'styled-components';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import theme from './styles/theme';
+import GlobalStyles from './styles/global';
+import { SearchContextProvider } from './context/SearchContext';
+import useDarkMode from './hooks/useDarkMode';
+import Header from './components/Header';
+import SearchBar from './components/SearchBar';
+import ProfileCard from './components/ProfileCard';
+import ModalButtons from './components/ModalButtons';
+import withDarkModeProvider from './hoc/withDarkModeProvider';
+
+const BackgroundContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--color-background);
+`;
+
+const Wrapper = styled.main`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90rem;
+`;
+
+const queryClient = new QueryClient();
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { isDarkMode } = useDarkMode();
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={isDarkMode ? theme.dark : theme.light}>
+        <SearchContextProvider>
+          <BackgroundContainer>
+            <Wrapper>
+              <Header />
+              <SearchBar />
+              <ProfileCard />
+              <ModalButtons />
+            </Wrapper>
+          </BackgroundContainer>
+        </SearchContextProvider>
+        <GlobalStyles />
+      </ThemeProvider>
+    </QueryClientProvider>
+  );
 }
 
-export default App
+export default withDarkModeProvider(App);

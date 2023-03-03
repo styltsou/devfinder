@@ -23,5 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
+<<<<<<< Updated upstream
 # Env files
+=======
+>>>>>>> Stashed changes
 .env

@@ -16,6 +16,7 @@ const BackgroundContainer = styled.div`
   align-items: flex-start;
   min-height: 100vh;
   width: 100%;
+  padding: 0 2.5rem;
   background-color: var(--color-background);
 `;
 
@@ -25,6 +26,7 @@ const Wrapper = styled.main`
   justify-content: center;
   align-items: center;
   width: 90rem;
+  max-width: 100%;
 `;
 
 const queryClient = new QueryClient();

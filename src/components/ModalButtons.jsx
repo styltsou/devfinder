@@ -1,9 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import Modal from './UI/Modal';
 
 import Followers from './Followers/Followers';
-import Repos from './ReposGrid';
+import Repos from './Repos';
 
 const FlexContainer = styled.div`
   dispaly: flex;
@@ -32,15 +31,13 @@ const Button = styled.button`
   }
 `;
 
-function ButtonsModal({ user }) {
+function ButtonsModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [modalId, setModalId] = useState('repos');
 
   const handleClick = e => {
     setIsOpen(prevState => !prevState);
     setModalId(e.target.id);
-
-    console.log(e.target.id);
   };
 
   return (
@@ -56,9 +53,7 @@ function ButtonsModal({ user }) {
           Following
         </Button>
       </FlexContainer>
-      <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-        <h1>{modalId}</h1>
-      </Modal>
+      <Repos isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
 }

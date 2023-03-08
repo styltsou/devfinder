@@ -41,7 +41,7 @@ function App() {
               <Header />
               <SearchBar />
               <ProfileCard />
-              <ModalButtons />
+              {/* <ModalButtons /> */}
             </Wrapper>
           </BackgroundContainer>
         </SearchContextProvider>

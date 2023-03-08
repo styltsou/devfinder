@@ -6,7 +6,7 @@ export const getUserProfile = async userHandle => {
 
 export const getUserRepos = async userHandle => {
   const results = await fetch(
-    `${import.meta.env.REACT_APP_GH_API_URI}/users/${userHandle}/repos`
+    `https://api.github.com/users/${userHandle}/repos`
   );
 
   return await results.json();
@@ -14,7 +14,7 @@ export const getUserRepos = async userHandle => {
 
 export const getUserFollowers = async userHandle => {
   const results = await fetch(
-    `${import.meta.env.REACT_APP_GH_API_URI}/users/${userHandle}/followers`
+    `https://api.github.com/users/${userHandle}/followers`
   );
 
   return await results.json();
@@ -22,7 +22,7 @@ export const getUserFollowers = async userHandle => {
 
 export const getUserFollowing = async userHandle => {
   const results = await fetch(
-    `${import.meta.env.REACT_APP_GH_API_URI}/users/${userHandle}/following`
+    `https://api.github.com/users/${userHandle}/following`
   );
 
   return await results.json();

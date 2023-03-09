@@ -1,14 +1,17 @@
 import styled, { ThemeProvider } from 'styled-components';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import theme from './styles/theme';
-import GlobalStyles from './styles/global';
+
 import { SearchContextProvider } from './context/SearchContext';
 import useDarkMode from './hooks/useDarkMode';
+import withDarkModeProvider from './hoc/withDarkModeProvider';
+
+import theme from './styles/theme';
+import GlobalStyles from './styles/global';
+
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import ProfileCard from './components/ProfileCard';
 import ModalButtons from './components/ModalButtons';
-import withDarkModeProvider from './hoc/withDarkModeProvider';
 
 const BackgroundContainer = styled.div`
   display: flex;

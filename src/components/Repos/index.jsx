@@ -27,11 +27,16 @@ const Paragraph = styled.p`
 function Repos({ isOpen, setIsOpen }) {
   const { searchTerm } = useSearch();
 
-  const { isLoading, data: repos } = useUserRepos(searchTerm);
+  const { isLoading, data: repos } = useUserRepos({
+    userHandle: searchTerm,
+    shouldFetch: isOpen,
+  });
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       {isLoading ? (
+        <Spinner />
+      ) : (
         <FlexContainer>
           {repos.length ? (
             repos.map((repo, idx) => <RepoCard key={idx} repo={repo} />)
@@ -39,8 +44,6 @@ function Repos({ isOpen, setIsOpen }) {
             <Paragraph>This user doesn't have any public repos.</Paragraph>
           )}
         </FlexContainer>
-      ) : (
-        <Spinner />
       )}
     </Modal>
   );

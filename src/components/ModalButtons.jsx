@@ -5,7 +5,7 @@ import Followers from './Followers/Followers';
 import Repos from './Repos';
 
 const FlexContainer = styled.div`
-  dispaly: flex;
+  display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
